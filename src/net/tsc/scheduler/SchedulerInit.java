@@ -1,4 +1,4 @@
-package net.sms.scheduler;
+package net.tsc.scheduler;
 
 import java.text.ParseException;
 
@@ -21,9 +21,9 @@ public class SchedulerInit extends HttpServlet{
       sched = schedFact.getScheduler();  
       sched.start(); 
        //"job이름, 그룹명, 동작시킬Class"  
-      JobDetail job1 = new JobDetail("Job_SMSUpdate", "group1", JobSendInfoUpdate.class);   
+      JobDetail job1 = new JobDetail("Job_TscUpdate", "group1", JobSendInfoUpdate.class);   
        // 매분 0초에 동작(30초마다 동작시키려면 job을 하나더 만들고 아래에 0대신 30을 넣으면 ok  
-      CronTrigger trigger1 = new CronTrigger("Trigger_SMSUpdate", "group1", "0/30 * * * * ?");   
+      CronTrigger trigger1 = new CronTrigger("Trigger_TscUpdate", "group1", "0/30 * * * * ?");   
       sched.scheduleJob(job1, trigger1);  
        
     } catch (SchedulerException e) {  

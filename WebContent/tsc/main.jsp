@@ -93,7 +93,15 @@ if((MemberBean)session.getAttribute("Member")==null || !loginManager.isLogin(ses
                             <a href="<%=application.getContextPath() %>/TscMainView.tsc"><i class="fa fa-dashboard fa-fw"></i>메인페이지</a>
                         </li>
                         <li>
-                            <a href="<%=application.getContextPath() %>/SmsSendView.sms"><i class="fa fa-table fa-fw"></i>발송하기</a>
+                        <a href="#"><i class="fa fa-wrench fa-fw"></i>발송하기<span class="fa arrow"></span></a>
+                            <ul class="nav nav-second-level">
+                                <li>
+                            		<a href="<%=application.getContextPath() %>/SmsSendView.sms"><i class="fa fa-table fa-fw"></i>SMS발송</a>
+                        		</li>
+                                <li>
+                            		<a href="<%=application.getContextPath() %>/SmsSendView.sms"><i class="fa fa-table fa-fw"></i>PUSH발송</a>
+                        		</li>
+                            </ul>
                         </li>
                         <li>
                             <a href="<%=application.getContextPath() %>/SmsReportView.sms"><i class="fa fa-bar-chart-o fa-fw"></i>발송레포트</a>

@@ -16,7 +16,7 @@
 	</servlet-class>
     <init-param>
       <param-name>config-file</param-name>
-      <param-value>net/sms/scheduler/quartz.properties</param-value>
+      <param-value>net/tsc/scheduler/quartz.properties</param-value>
     </init-param>
     <init-param>
       <param-name>shutdown-on-unload</param-name>
@@ -31,7 +31,7 @@
   <servlet>
     <display-name>SchedulerInit</display-name>
     <servlet-name>SchedulerInit</servlet-name>
-    <servlet-class>net.sms.scheduler.SchedulerInit</servlet-class>
+    <servlet-class>net.tsc.scheduler.SchedulerInit</servlet-class>
     <load-on-startup>2</load-on-startup>
   </servlet>
   <servlet-mapping>
