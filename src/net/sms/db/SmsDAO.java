@@ -21,7 +21,7 @@ public class SmsDAO {
 	public int getSendCount(String id){
 		int count = 0;
 		try{
-			String sql = "SELECT COUNT(*) as CNT FROM SEND_INFO WHERE MEM_ID=?";
+			String sql = "SELECT COUNT(*) as CNT FROM SMS_SEND_INFO WHERE MEM_ID=?";
 			con = LocalDbUtil.getConnection();
 			pstmt = con.prepareStatement(sql);
 			pstmt.setString(1, id);
@@ -49,7 +49,7 @@ public class SmsDAO {
 					+ " SELECT * FROM SEND_INFO WHERE MEM_ID=? ORDER BY SEND_DATE DESC) A WHERE ROWNUM <= ?)"
 					+ " WHERE RNUM >= ?";*/
 			String sql = "select * "
-					+ " from SEND_INFO "
+					+ " from SMS_SEND_INFO "
 					+ " where MEM_ID = ? "
 					+ " order by SEND_DATE desc Limit ?, ?";
 			pstmt = con.prepareStatement(sql);
@@ -85,7 +85,7 @@ public class SmsDAO {
 	public int getSendFailCount(String id){
 		int count = 0;
 		try{
-			String sql = "SELECT COUNT(*) as CNT FROM SEND_INFO A, REPORT_INFO B WHERE A.ETC = B.ETC AND A.MEM_ID=? AND B.RESULT_CODE!='0'";
+			String sql = "SELECT COUNT(*) as CNT FROM SMS_SEND_INFO A, REPORT_INFO B WHERE A.ETC = B.ETC AND A.MEM_ID=? AND B.RESULT_CODE!='0'";
 			con = LocalDbUtil.getConnection();
 			pstmt = con.prepareStatement(sql);
 			pstmt.setString(1, id);
@@ -106,7 +106,7 @@ public class SmsDAO {
 	public int getSendSuccessCount(String id){
 		int count = 0;
 		try{
-			String sql = "SELECT COUNT(*) as CNT FROM SEND_INFO A, REPORT_INFO B WHERE A.ETC = B.ETC AND A.MEM_ID=? AND B.RESULT_CODE='0'";
+			String sql = "SELECT COUNT(*) as CNT FROM SMS_SEND_INFO A, REPORT_INFO B WHERE A.ETC = B.ETC AND A.MEM_ID=? AND B.RESULT_CODE='0'";
 			con = LocalDbUtil.getConnection();
 			pstmt = con.prepareStatement(sql);
 			pstmt.setString(1, id);
@@ -127,7 +127,7 @@ public class SmsDAO {
 	public int getFailCount(String etc){
 		int count = 0;
 		try{
-			String sql = "SELECT COUNT(*) as CNT FROM REPORT_INFO WHERE ETC=? AND RESULT_CODE!='0'";
+			String sql = "SELECT COUNT(*) as CNT FROM SMS_REPORT_INFO WHERE ETC=? AND RESULT_CODE!='0'";
 			con = LocalDbUtil.getConnection();
 			pstmt = con.prepareStatement(sql);
 			pstmt.setString(1, etc);
@@ -148,7 +148,7 @@ public class SmsDAO {
 	public int getTotalCount(String etc){
 		int count = 0;
 		try{
-			String sql = "SELECT COUNT(*) as CNT FROM REPORT_INFO WHERE ETC=?";
+			String sql = "SELECT COUNT(*) as CNT FROM SMS_REPORT_INFO WHERE ETC=?";
 			con = LocalDbUtil.getConnection();
 			pstmt = con.prepareStatement(sql);
 			pstmt.setString(1, etc);
@@ -169,7 +169,7 @@ public class SmsDAO {
 	public int getSuccessCount(String etc){
 		int count = 0;
 		try{
-			String sql = "SELECT COUNT(*) as CNT FROM REPORT_INFO WHERE ETC=? AND RESULT_CODE='0'";
+			String sql = "SELECT COUNT(*) as CNT FROM SMS_REPORT_INFO WHERE ETC=? AND RESULT_CODE='0'";
 			con = LocalDbUtil.getConnection();
 			pstmt = con.prepareStatement(sql);
 			pstmt.setString(1, etc);
@@ -191,7 +191,7 @@ public class SmsDAO {
 		int etc = 0;
 		try{
 			con = LocalDbUtil.getConnection();
-			String sql = "SELECT MAX(CAST(ETC AS UNSIGNED)) as ETC FROM SEND_INFO";
+			String sql = "SELECT MAX(CAST(ETC AS UNSIGNED)) as ETC FROM SMS_SEND_INFO";
 			pstmt = con.prepareStatement(sql);
 			rs = pstmt.executeQuery();
 			
@@ -216,7 +216,7 @@ public class SmsDAO {
 		ArrayList<SmsReportInfoBean> list = new ArrayList<SmsReportInfoBean>();
 		try{
 			con = LocalDbUtil.getConnection();
-			String sql = "SELECT * FROM REPORT_INFO WHERE ETC = ?";
+			String sql = "SELECT * FROM SMS_REPORT_INFO WHERE ETC = ?";
 			pstmt = con.prepareStatement(sql);
 			pstmt.setString(1, etc);
 			rs = pstmt.executeQuery();
@@ -250,7 +250,7 @@ public class SmsDAO {
 					+ " FROM (SELECT * FROM REPORT_INFO WHERE etc=? ORDER BY RECEIVE_DATE) A WHERE ROWNUM <= ?) "
 					+ " WHERE RNUM >= ?";*/
 			String sql = "select * "
-					+ " from REPORT_INFO "
+					+ " from SMS_REPORT_INFO "
 					+ " where ETC = ? "
 					+ " order by RECEIVE_DATE desc Limit ?, ?";
 			pstmt = con.prepareStatement(sql);
@@ -282,7 +282,7 @@ public class SmsDAO {
 	public ArrayList<String> getSendEtcList(){
 		ArrayList<String> list = new ArrayList<String>();
 		try{
-			String sql = "SELECT ETC FROM SEND_INFO";
+			String sql = "SELECT ETC FROM SMS_SEND_INFO";
 			con = LocalDbUtil.getConnection();
 			pstmt = con.prepareStatement(sql);
 			rs = pstmt.executeQuery();
@@ -305,7 +305,7 @@ public class SmsDAO {
 		try{
 			con = LocalDbUtil.getConnection();
 			String sql = "SELECT distinct A.ETC, FROM_NUMBER, SEND_DATE, SMS_MESSAGE, SEND_TOTAL, SEND_SUCCESS, SEND_FAILURE "
-					+ " FROM REPORT_INFO A, SEND_INFO B "
+					+ " FROM SMS_REPORT_INFO A, SMS_SEND_INFO B "
 					+ " WHERE A.ETC = B.ETC AND B.MEM_ID = ? ORDER BY SEND_DATE DESC";
 			pstmt = con.prepareStatement(sql);
 			pstmt.setString(1, id);
@@ -342,7 +342,7 @@ public class SmsDAO {
 		{
 			con = LocalDbUtil.getConnection();
 			con.setAutoCommit(false);
-			String sql = "INSERT INTO SEND_INFO VALUES ((SELECT COUNT(*) FROM (SELECT * FROM SEND_INFO) A)+1,?,NOW(),?,?,?,?,?)";
+			String sql = "INSERT INTO SMS_SEND_INFO VALUES ((SELECT COUNT(*) FROM (SELECT * FROM SMS_SEND_INFO) A)+1,?,NOW(),?,?,?,?,?)";
 			pstmt = con.prepareStatement(sql);
 			pstmt.setString(1, bean.getId());
 			pstmt.setString(2, bean.getFromNumber());
@@ -377,8 +377,8 @@ public class SmsDAO {
 		{
 			con = LocalDbUtil.getConnection();
 			con.setAutoCommit(false);
-			String sql = "INSERT INTO REPORT_INFO (TO_NUMBER, ETC) "
-					+ " VALUES (?,(SELECT COUNT(*) FROM SEND_INFO))";
+			String sql = "INSERT INTO SMS_REPORT_INFO (TO_NUMBER, ETC) "
+					+ " VALUES (?,(SELECT COUNT(*) FROM SMS_SEND_INFO))";
 			for(int i=0; i<list.size(); i++){
 			pstmt = con.prepareStatement(sql);
 			pstmt.setString(1, list.get(i).getToNumber());
@@ -417,7 +417,7 @@ public class SmsDAO {
 					+" WHEN MATCHED THEN"
 					+" UPDATE SET SENT_DATE = ?, RECEIVE_DATE=?, RESULT_CODE=?"
 					+" WHERE SENT_DATE IS NULL OR RECEIVE_DATE IS NULL OR RESULT_CODE IS NULL";*/
-			String sql = "UPDATE REPORT_INFO "
+			String sql = "UPDATE SMS_REPORT_INFO "
 					+ " SET SENT_DATE=?, RECEIVE_DATE=?, RESULT_CODE=? "
 					+ " WHERE TO_NUMBER=? AND ETC=? "
 					+ " AND (SENT_DATE IS NULL OR RECEIVE_DATE IS NULL OR RESULT_CODE IS NULL)";
@@ -453,9 +453,9 @@ public class SmsDAO {
 	public boolean setSendAllCount(ArrayList<String> etcList){
 		boolean isSuccess = false;
 		try{
-			String sql = "UPDATE SEND_INFO "
-					+ " SET SEND_SUCCESS =(SELECT COUNT(*) FROM (SELECT * FROM SEND_INFO) A, (SELECT * FROM REPORT_INFO) B WHERE A.ETC=B.ETC AND A.ETC=? AND B.RESULT_CODE='0'),"
-					+ " SEND_FAILURE = (SELECT COUNT(*) FROM (SELECT * FROM SEND_INFO) A, (SELECT * FROM REPORT_INFO) B WHERE A.ETC=B.ETC AND A.ETC=? AND B.RESULT_CODE!='0')"
+			String sql = "UPDATE SMS_SEND_INFO "
+					+ " SET SEND_SUCCESS =(SELECT COUNT(*) FROM (SELECT * FROM SMS_SEND_INFO) A, (SELECT * FROM SMS_REPORT_INFO) B WHERE A.ETC=B.ETC AND A.ETC=? AND B.RESULT_CODE='0'),"
+					+ " SEND_FAILURE = (SELECT COUNT(*) FROM (SELECT * FROM SMS_SEND_INFO) A, (SELECT * FROM SMS_REPORT_INFO) B WHERE A.ETC=B.ETC AND A.ETC=? AND B.RESULT_CODE!='0')"
 					+ " WHERE ETC=?";
 			con = LocalDbUtil.getConnection();
 			con.setAutoCommit(false);

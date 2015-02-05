@@ -8,7 +8,20 @@
 <script type="text/javascript">
 //파일등록페이지로 이동
 function sub(){
-	document.fm.submit();
+	var fileext = document.getElementById('file').value;
+	fileext = fileext.slice(fileext.indexOf(".")+1).toLowerCase();
+	alert(fileext);
+	if(fileext == "txt"){
+		document.fm.submit();
+	}else if(fileext == "csv"){
+		document.fm.action = "<%=application.getContextPath()%>/sms/csvFileReg.jsp";
+		document.fm.submit();
+	}else if(fileext == "xls" || fileext == "xlsx"){
+		document.fm.action = "<%=application.getContextPath()%>/sms/excelFileReg.jsp";
+		document.fm.submit();
+	}else{
+		alert("파일형식을 확인하세요");
+	}
 }
 //다이어로그닫기
 function clo(){
@@ -22,7 +35,7 @@ table,tr,td { border: 3px solid #e4e4e4;}
 <body>
 <form name="fm" action="<%=application.getContextPath()%>/sms/txtFileReg.jsp" method="post" enctype="multipart/form-data">
    <table> 
-    <tr><input type="file" name="fileName"><br><br>
+    <tr><input type="file" id="file" name="fileName"><br><br>
     </tr>
  	<tr>
  	<th colspan="2">파일 등록 양식</th>

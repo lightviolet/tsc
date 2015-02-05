@@ -82,93 +82,85 @@
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>SMS 발송센터(SSC:SMS Send Center)</title>
-<!-- Bootstrap Core CSS -->
-<link href="<%=application.getContextPath() %>/bootstrap/bower_components/bootstrap/dist/css/bootstrap.min.css" rel="stylesheet">
-<!-- MetisMenu CSS -->
-<link href="<%=application.getContextPath() %>/bootstrap/bower_components/metisMenu/dist/metisMenu.min.css" rel="stylesheet">
-<!-- Custom CSS -->
-<link href="<%=application.getContextPath() %>/bootstrap/dist/css/sb-admin-2.css" rel="stylesheet">
-<!-- Morris Charts CSS -->
-<link href="<%=application.getContextPath() %>/bootstrap/bower_components/morrisjs/morris.css" rel="stylesheet">
-<!-- Custom Fonts -->
-<link href="<%=application.getContextPath() %>/bootstrap/bower_components/font-awesome/css/font-awesome.min.css" rel="stylesheet" type="text/css">
+<link href="//netdna.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
+<link href="<%=application.getContextPath() %>/css/template.css" rel="stylesheet">
+<script src="//netdna.bootstrapcdn.com/bootstrap/3.2.0/js/bootstrap.min.js"></script>
+<!-- jQuery -->
+<script src="<%=application.getContextPath() %>/jquery/jquery-1.10.1.min.js"></script>
+<script src="<%=application.getContextPath() %>/bootstrap/js/bootstrap.min.js"></script>
+<script type="text/javascript">
+        window.alert = function(){};
+        var defaultCSS = document.getElementById('bootstrap-css');
+        function changeCSS(css){
+            if(css) $('head > link').filter(':first').replaceWith('<link rel="stylesheet" href="'+ css +'" type="text/css" />'); 
+            else $('head > link').filter(':first').replaceWith(defaultCSS); 
+        }
+        $( document ).ready(function() {
+          var iframe_height = parseInt($('html').height()); 
+          window.parent.postMessage( iframe_height, 'http://bootsnipp.com');
+        });
+    </script>
 </head>
 <body>
+<link href="//maxcdn.bootstrapcdn.com/font-awesome/4.2.0/css/font-awesome.min.css" rel="stylesheet">
 <%
 if((MemberBean)session.getAttribute("Member")==null  || !loginManager.isLogin(session.getId())){
 	%><jsp:forward page="../index.jsp"></jsp:forward><%
 }
 %>
-    <div id="wrapper">
-        <!-- 네비게이션 -->
-        <nav class="navbar navbar-default navbar-static-top" role="navigation" style="margin-bottom: 0">
-        	<!-- 상단 네비게이션 -->
-            <div class="navbar-header">
-                <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
-                    <span class="sr-only">Toggle navigation</span>
-                    <span class="icon-bar"></span>
-                    <span class="icon-bar"></span>
-                    <span class="icon-bar"></span>
-                </button>
-                <a class="navbar-brand" href="<%=application.getContextPath() %>/SmsMainView.sms">SMS 발송센터</a>
-            </div>
-			<!-- 상단 드랍다운 네비게이션 -->
-            <ul class="nav navbar-top-links navbar-right">
-                <li class="dropdown">
-                    <a class="dropdown-toggle" data-toggle="dropdown" href="#">
-                        <i class="fa fa-user fa-fw"></i>  <i class="fa fa-caret-down"></i>
-                    </a>
-                    <ul class="dropdown-menu">
-                        <li><a href="<%=application.getContextPath()%>/MemberAlterView.mem"><i class="fa fa-user fa-fw"></i>정보수정</a>
-                        </li>
-                        <li class="divider"></li>
-                        <li><a href="<%=application.getContextPath()%>/MemberLogoutAction.mem"><i class="fa fa-sign-out fa-fw"></i>로그아웃</a>
-                        </li>
-                    </ul>
-                </li>
-            </ul>
-			<!-- 왼쪽 네비게이션 -->
-            <div class="navbar-default sidebar" role="navigation">
-                <div class="sidebar-nav navbar-collapse">
-                	<div class="text-center" style="font-size: 15px">
-                		<br>
-            	    	<strong><%=bean.getName()%>님 환영합니다.</strong>
-                		<br>
-             		   	<br>
-               	 		<strong>현재 접속자 수 : <%=loginManager.getUserCount() %>명</strong>
-                		<br>
-                		<br>
-                		<div>
-                			<input class="btn btn-info" type="button" value="정보변경" onclick="location.href='<%=application.getContextPath()%>/MemberAlterView.mem'">
-                			<input class="btn btn-info" type="button" value="로그아웃" onclick="location.href='<%=application.getContextPath()%>/MemberLogoutAction.mem'">
-                		</div>
-                		<br>
-                	</div>
-                    <ul class="nav" id="side-menu">
-                        <li>
-                            <a href="<%=application.getContextPath() %>/TscMainView.tsc"><i class="fa fa-dashboard fa-fw"></i>메인페이지</a>
-                        </li>
-                        <li>
-                            <a href="<%=application.getContextPath() %>/SmsSendView.sms"><i class="fa fa-table fa-fw"></i>발송하기</a>
-                        </li>
-                        <li style="background: #eee;">
-                            <a href="<%=application.getContextPath() %>/SmsReportView.sms"><i class="fa fa-bar-chart-o fa-fw"></i>발송레포트</a>
-                        </li> 
-                    </ul>
-                </div>
-            </div>
-        </nav>
+<div class="nav-side-menu">
+    <div class="brand">T S C</div>
+    	<div class="text-center" style="font-size: 15px">
+    		<br><br>
+    		<strong><%=bean.getName()%>님 환영합니다.</strong>
+    		<br><br>
+    		<strong>현재 접속자 수 : <%=loginManager.getUserCount() %>명</strong>
+    		<br><br>
+    		<div>
+    			<input class="btn btn-info" type="button" value="정보변경" onclick="location.href='<%=application.getContextPath()%>/MemberAlterView.mem'">
+    			<input class="btn btn-info" type="button" value="로그아웃" onclick="location.href='<%=application.getContextPath()%>/MemberLogoutAction.mem'">
+    		</div>
+    		<br><br>
+    	</div>
+    	<i class="fa fa-bars fa-2x toggle-btn" data-toggle="collapse" data-target="#menu-content"></i>
+       	<div class="menu-list">
+            <ul id="menu-content" class="menu-content collapse out">
+               <li>
+                  <a href="<%=application.getContextPath()%>/TscMainView.tsc">
+                  	<i class="fa fa-dashboard fa-lg"></i> 메인페이지
+                  </a>
+               </li>
+               <li  data-toggle="collapse" data-target="#products" class="collapsed">
+                  <a href="#"><i class="fa fa-gift fa-lg"></i> 발송하기 <span class="arrow"></span></a>
+               </li>
+               <ul class="sub-menu collapse" id="products">
+                   <li><a href="<%=application.getContextPath()%>/SmsSendView.sms">S M S 발송</a></li>
+                   <li><a href="<%=application.getContextPath()%>/PushSendView.push">PUSH 발송</a></li>
+               </ul>
+                
+               <li data-toggle="collapse" data-target="#service" class="collapsed active">
+                  <a href="#"><i class="fa fa-globe fa-lg"></i> 발송레포트<span class="arrow"></span></a>
+               </li>  
+               <ul class="sub-menu collapse" id="service">
+                  <li class="active"><a href="<%=application.getContextPath()%>/SmsReportView.sms">S M S 레포트</a></li>
+                  <li><a href="<%=application.getContextPath()%>/PushReportView.push">PUSH 레포트</a></li>
+               </ul>
+           </ul>
+     </div>
+</div>
 		<!-- 페이지 내용 부분 -->
         <div id="page-wrapper">
         	<!-- 페이지 제목 -->
             <div class="row">
-                <div class="col-lg-9">
+                <div class="col-xs-1 col-sm-5 col-md-3"></div>
+        		<div class="col-xs-11 col-sm-7 col-md-7">
                     <h1 class="page-header">SMS Report</h1>
                 </div>
             </div>
             <!-- 발송별 정보 부분 -->
             <div class="row">
-                <div class="col-lg-9">
+                <div class="col-xs-1 col-sm-5 col-md-3"></div>
+        		<div class="col-xs-11 col-sm-7 col-md-7">
                     <div class="panel panel-default">
                         <div class="panel-heading">
                             	발송별 정보 (발송에 관한 업데이트는 최대 5분정도 소요될 수 있습니다.)
@@ -225,19 +217,5 @@ if((MemberBean)session.getAttribute("Member")==null  || !loginManager.isLogin(se
                 </div>
             </div>
         </div>
-    </div>
-
-    <!-- jQuery -->
-    <script src="<%=application.getContextPath() %>/bootstrap/bower_components/jquery/dist/jquery.min.js"></script>
-    <!-- Bootstrap Core JavaScript -->
-    <script src="<%=application.getContextPath() %>/bootstrap/bower_components/bootstrap/dist/js/bootstrap.min.js"></script>
-    <!-- Metis Menu Plugin JavaScript -->
-    <script src="<%=application.getContextPath() %>/bootstrap/bower_components/metisMenu/dist/metisMenu.min.js"></script>
-    <!-- Morris Charts JavaScript -->
-    <script src="<%=application.getContextPath() %>/bootstrap/bower_components/raphael/raphael-min.js"></script>
-    <script src="<%=application.getContextPath() %>/bootstrap/bower_components/morrisjs/morris.min.js"></script>
-    <script src="<%=application.getContextPath() %>/bootstrap/js/morris-data.js"></script>
-    <!-- Custom Theme JavaScript -->
-    <script src="<%=application.getContextPath() %>/bootstrap/dist/js/sb-admin-2.js"></script>
 </body>
 </html>

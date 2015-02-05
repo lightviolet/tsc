@@ -6,6 +6,9 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 
+import com.sun.corba.se.spi.orbutil.fsm.FSM;
+import com.sun.corba.se.spi.orbutil.fsm.Input;
+
 /* 
  *MySQL DB 유틸리티
  */
