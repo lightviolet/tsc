@@ -13,7 +13,7 @@
 <meta charset="utf-8">
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>SMS 발송센터(SSC:SMS Send Center)</title>
+<title>T S C(Total Send Center)</title>
 <link href="//netdna.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
 <link href="<%=application.getContextPath() %>/css/template.css" rel="stylesheet">
 <script src="//netdna.bootstrapcdn.com/bootstrap/3.2.0/js/bootstrap.min.js"></script>
@@ -77,7 +77,7 @@ $(document).ready(function(){
 	});
 	//파일등록
 	$('#FileReg').click(function(){
-		var popUrl = "<%=application.getContextPath()%>/SmsFileRegView.sms";   //팝업창에 출력될 페이지 URL
+		var popUrl = "<%=application.getContextPath()%>/TscFileRegView.tsc";   //팝업창에 출력될 페이지 URL
 		var popOption = "width=290, height=220, resizable=no, scrollbars=no, status=no;";    //팝업창 옵션(option)
 		   window.open(popUrl,"",popOption);
 		
@@ -206,14 +206,14 @@ if((MemberBean)session.getAttribute("Member")==null || !loginManager.isLogin(ses
 </div>
 		<!-- 페이지 내용부분 -->
         <div id="page-wrapper">
-            <div class="row">
+            <div>
                 <div class="col-xs-1 col-sm-5 col-md-3"></div>
         		<div class="col-xs-11 col-sm-7 col-md-7">
                     <h1 class="page-header">SMS 발송</h1>
                 </div>
             </div>
             <!-- 받는사람의 번호 등록부분 -->
-            <div class="row">
+            <div>
             	<div class="col-xs-1 col-sm-5 col-md-3"></div>
             	<div class="col-xs-11 col-sm-7 col-md-4" style="width:300px">
                     <div class="panel panel-default" >

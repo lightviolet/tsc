@@ -84,6 +84,10 @@ $(document).ready(function(){
 	});
 	//입력번호와 인증번호 확인
 	$('#btnConfirmNumber').click(function(){
+		if($('#confirmNumber').val() == ""){
+			alert("확인번호를 입력해주세요");
+			return ;
+		}
 		$.ajax({
 			type: "POST",
 			url: "<%=application.getContextPath()%>/member/confirmNumber.jsp",

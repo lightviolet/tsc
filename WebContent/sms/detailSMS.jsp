@@ -79,7 +79,7 @@
 <meta charset="utf-8">
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>SMS 발송센터(SSC:SMS Send Center)</title>
+<title>T S C(Total Send Center)</title>
 <link href="//netdna.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
 <link href="<%=application.getContextPath() %>/css/template.css" rel="stylesheet">
 <script src="//netdna.bootstrapcdn.com/bootstrap/3.2.0/js/bootstrap.min.js"></script>
@@ -147,14 +147,14 @@ if((MemberBean)session.getAttribute("Member")==null){
 </div>
 		<!-- 페이지 내용부분 -->
         <div id="page-wrapper">
-            <div class="row">
+            <div>
                 <div class="col-xs-1 col-sm-5 col-md-3"></div>
         		<div class="col-xs-11 col-sm-7 col-md-7">
                     <h1 class="page-header">SMS Report</h1>
                 </div>
             </div>
             <!-- 발송 대비 성공률 차트 -->
-            <div class="row">
+            <div>
                 <div class="col-xs-1 col-sm-5 col-md-3"></div>
         		<div class="col-xs-11 col-sm-7 col-md-7">
                     <div class="panel panel-default">	
@@ -170,7 +170,7 @@ if((MemberBean)session.getAttribute("Member")==null){
                 </div>
             </div>
 			<!-- 해당 발송 정보 리스트 -->
-            <div class="row">
+            <div>
                 <div class="col-xs-1 col-sm-5 col-md-3"></div>
         		<div class="col-xs-11 col-sm-7 col-md-7">
                     <div class="panel panel-default">

@@ -19,7 +19,7 @@
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 
-<title>SMS 발송센터(SSC:SMS Send Center)</title>
+<title>T S C(Total Send Center)</title>
 <link href="//netdna.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
 <link href="<%=application.getContextPath() %>/css/template.css" rel="stylesheet">
 <script src="//netdna.bootstrapcdn.com/bootstrap/3.2.0/js/bootstrap.min.js"></script>
@@ -88,13 +88,13 @@ if((MemberBean)session.getAttribute("Member")==null || !loginManager.isLogin(ses
 </div>
 <!-- 페이지 본문 내용 -->
 <div id="page-wrapper">
-    <div class="row">
+    <div>
     	<div class="col-xs-0 col-sm-5 col-md-3"></div>
         <div class="col-xs-12 col-sm-7 col-md-7">
             <h1 class="page-header">방문해주신 여러분 환영합니다.</h1>
         </div>
     </div>
-  	<div id="row">
+  	<div>
         <div class="col-xs-0 col-sm-5 col-md-3"></div>
         <div class="col-xs-12 col-sm-7 col-md-7">
             <div class="panel panel-default">	

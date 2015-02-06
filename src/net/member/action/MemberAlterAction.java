@@ -21,7 +21,7 @@ public class MemberAlterAction implements Action {
 		String password = request.getParameter("password");
 		String name = request.getParameter("name");
 		String email = request.getParameter("email");
-		String phonenumber = request.getParameter("phoneNumber");
+		String phoneNumber = request.getParameter("phoneNumber");
 		//받은 폼데이터 bean에 저장
 		HttpSession session = request.getSession();
 		MemberBean sessionBean = (MemberBean)session.getAttribute("Member");
@@ -30,7 +30,7 @@ public class MemberAlterAction implements Action {
 		bean.setPassword(password);
 		bean.setName(name);
 		bean.setEmail(email);
-		bean.setPhonenumber(phonenumber);
+		bean.setPhonenumber(phoneNumber);
 		System.out.println(password);
 		//bean내용을 DB에 저장
 		MemberDAO dao = new MemberDAO();
@@ -44,7 +44,7 @@ public class MemberAlterAction implements Action {
 		
 		ActionForward forward = new ActionForward();
 		forward.setRedirect(false);
-		forward.setPath("/SmsMainView.sms");
+		forward.setPath("/TscMainView.tsc");
 		
 		return forward;
 	}

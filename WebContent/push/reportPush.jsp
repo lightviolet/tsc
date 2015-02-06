@@ -16,7 +16,7 @@
 <meta charset="utf-8">
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>SMS 발송센터(SSC:SMS Send Center)</title>
+<title>T S C(Total Send Center)</title>
 <link href="//netdna.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
 <link href="<%=application.getContextPath() %>/css/template.css" rel="stylesheet">
 <script src="//netdna.bootstrapcdn.com/bootstrap/3.2.0/js/bootstrap.min.js"></script>
@@ -70,7 +70,7 @@ if((MemberBean)session.getAttribute("Member")==null  || !loginManager.isLogin(se
                </li>
                <ul class="sub-menu collapse" id="products">
                    <li><a href="<%=application.getContextPath()%>/SmsSendView.sms">S M S 발송</a></li>
-                   <li class="active"><a href="<%=application.getContextPath()%>/PushSendView.push">PUSH 발송</a></li>
+                   <li><a href="<%=application.getContextPath()%>/PushSendView.push">PUSH 발송</a></li>
                </ul>
                 
                <li data-toggle="collapse" data-target="#service" class="collapsed active">
@@ -78,7 +78,7 @@ if((MemberBean)session.getAttribute("Member")==null  || !loginManager.isLogin(se
                </li>  
                <ul class="sub-menu collapse" id="service">
                   <li><a href="<%=application.getContextPath()%>/SmsReportView.sms">S M S 레포트</a></li>
-                  <li><a href="<%=application.getContextPath()%>/PushReportView.push">PUSH 레포트</a></li>
+                  <li class="active"><a href="<%=application.getContextPath()%>/PushReportView.push">PUSH 레포트</a></li>
                </ul>
            </ul>
      </div>
@@ -86,14 +86,14 @@ if((MemberBean)session.getAttribute("Member")==null  || !loginManager.isLogin(se
 		<!-- 페이지 내용 부분 -->
         <div id="page-wrapper">
         	<!-- 페이지 제목 -->
-            <div class="row">
+            <div>
                 <div class="col-xs-1 col-sm-5 col-md-3"></div>
         		<div class="col-xs-11 col-sm-7 col-md-7">
                     <h1 class="page-header">Push Report</h1>
                 </div>
             </div>
             <!-- 발송별 정보 부분 -->
-            <div class="row">
+            <div>
                 <div class="col-xs-1 col-sm-5 col-md-3"></div>
         		<div class="col-xs-11 col-sm-7 col-md-7">
                     <div class="panel panel-default">
@@ -106,22 +106,21 @@ if((MemberBean)session.getAttribute("Member")==null  || !loginManager.isLogin(se
                                 <table class="table table-striped">
                                     <thead>
                                         <tr>
-                                            <th style="text-align: center;width:12%">발송일자</th>
+                                            <th style="text-align: center;width:15%">발송일자</th>
                                             <th style="text-align: center;width:20%">제목</th>
-                                            <th style="text-align: center;width:15%">발송상태</th>
+                                            <th style="text-align: center;width:10%">발송상태</th>
                                             <th style="text-align: center;width:15%">발송통수</th>
-                                            <th style="text-align: center;width:7%">성공</th>
-                                            <th style="text-align: center;width:7%">실패</th>
-                                            <th style="text-align: center;width:7%">오픈</th>
-                                            <th style="text-align: center;width:7%">클릭</th>
-                                            <th style="text-align: center;width:10%">SMS</th>
+                                            <th style="text-align: center;width:10%">성공</th>
+                                            <th style="text-align: center;width:10%">실패</th>
+                                            <th style="text-align: center;width:10%">오픈</th>
+                                            <th style="text-align: center;width:10%">클릭</th>
                                         </tr>
                                     </thead>
                                     <tbody>
-                                    
+                                    	<tr></tr>
                                     </tbody>
                                     <tfoot>
-                                    	<tr></tr>
+                                    	<tr><td></td></tr>
                                     </tfoot>
                                 </table>
                             </div>         
